@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Registration page
+{% endblock title %} 
+
+
+{% block activeregister %}
+active
+{% endblock activeregister %} 
+
+
+
+
+
+{% block body %}
+
+    {% if successs %}
+    <div class="container" style="height:50px; width: 100%;">
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{mssg}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+  </div>
+  {% endif %}
+
+  {% if success %}
+  <div class="container" style="height:50px; width: 100%;">
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Registration Completed!!</strong> Thank you {{name}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>
+  {% endif %}
+
+<h2 class="text-center ">Request Page for Shopkeepers</h2>
+
+</div>
+<div class="container" style="height:100%; width: 100%">
+    <form action="/owner" method="post">
+        {% csrf_token %}
+        
+        
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" id="username" name="username" placeholder="Enter your Username ">
+        </div>
+
+        
+        <div class="form-group">
+          <label for="first_name">First_name</label>
+          <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter your First_name ">
+        </div>
+
+        
+        <div class="form-group">
+          <label for="last_name">last_name</label>
+          <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter your Last_name ">
+        </div>
+        
+        
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+          </div> 
+
+        
+          <div class="form-group">
+            <label for="image">License of Shop</label>
+            <div class="container">
+                <input  type="file" name="images"/>
+            </div>
+          </div> 
+
+
+<!--           
+        <div class="form-group">
+            <label for="email">Aadhar Card</label>
+            <div class="container">
+                <input type="file" name="aadhar" accept="image/*" />
+            </div>
+          </div> 
+
+          
+        <div class="form-group">
+            <label for="email">Pancard</label>
+            <div class="container">
+                <input type="file" name="pancard" accept="image/*" />
+            </div>
+          </div>  -->
+
+
+      <button type="submit" class="btn btn-primary" >Submit
+    </button>
+  </form>
+</div>
+
+{% endblock body %}

@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+contact page
+{% endblock title %} 
+
+
+
+{% block activecontactus %}
+active
+{% endblock activecontactus %} 
+
+
+
+
+{% block body %}
+
+<div>
+<div>
+  {% if success %}
+    <div class="container" style="height:50px; width: 100%;">
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Response Submitted!!</strong> Thank you {{name}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  </div>
+  {% endif %}
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a href="/"> Back </a></button>
+
+  
+<h2 class="text-center">Mail us on:<a href='mailto:patilsoham390@gmail.com' >patilsoham390@gmail.com</a></h2>
+
+<h2 class="text-center ">Contact</h2>
+
+</div>
+<div class="container">
+    <form action="/contact" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name ">
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+          </div>
+
+        
+        <div class="form-group">
+            <label for="phone">Mobile Number</label>
+            <input type="phone" class="form-control" id="phone" name="phone" placeholder="Enter your mobile number">
+          </div>  
+        
+          
+        <div class="form-group">
+          <label for="desc">Description</label>
+          <textarea class="form-control" id="desc" row="3" name="desc" placeholder="Enter a discription"></textarea>
+        </div>  
+
+            <button type="submit" class="btn btn-primary" >Submit</button>
+
+      {% comment %} {% endif %} {% endcomment %}
+  </form>
+</div>
+{% endblock body %}
