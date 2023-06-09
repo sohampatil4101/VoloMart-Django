@@ -34,8 +34,8 @@
           <td>{{obj.last_name}}</td>
           <td>{{obj.email}}</td>
           <td>{{obj.images}}</td>
-          <td><a class="btn btn-primary" href="/view/{{obj.username}}/{{obj.first_name}}/{{obj.last_name}}/{{obj.email}}" >view</a></td>
-          <td><a class="btn btn-primary" href="/accept/{{obj.username}}/{{obj.first_name}}/{{obj.last_name}}/{{obj.email}}">accept</a> </td>
+          <td><a class="btn btn-primary" href="/view/{{obj.username}}/{{obj.first_name}}/{{obj.last_name}}/{{obj.state}}/{{obj.city}}/{{obj.area}}/{{obj.pincode}}/{{obj.email}}/{{obj.phone}}" >view</a></td>
+          <td><a class="btn btn-primary" href="/accept/{{obj.username}}/{{obj.first_name}}/{{obj.last_name}}/{{obj.state}}/{{obj.city}}/{{obj.area}}/{{obj.pincode}}/{{obj.email}}/{{obj.phone}}/{{obj.password}}">accept</a> </td>
           <td><button><a class="bi bi-trash" href="/delete/{{obj.username}}/{{obj.email}}" ></a></button> </td>
           </tr>    
           {% endfor %}
@@ -44,4 +44,4 @@
 
 
 </body>
-</html>
+</html> 

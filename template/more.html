@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+{%load static %} 
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css'>
+    <title>Document</title>
+</head>
+<body>
+<div class="container my-3 sticky-top ">
+  <form class="form-inline my-2 my-lg-0" method="get" style="width: 1100px; height: 40px;" action="/search">
+    <!-- {% csrf_token %} -->
+    <input class="form-control mr-sm-2 ml-5" type="search" id="search" name="search" list="datalistOptions" style="width: 942px; height: 40px;" placeholder="Search by product 'name' or 'category' or 'seller name'" aria-label="Search">
+      <datalist id="datalistOptions">
+      {% for so in so %}
+        <option value="{{so.itemname}}">      
+      {% endfor %}
+    <button type="submit" class="btn btn-outline-success " >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg> Search
+          </button>
+  </form>
+</div>
+    <table class="table table-striped table-hover ">
+      <tbody>
+
+    
+    <!-- code -->
+    
+      {% if username %}
+      
+          <!-- search result for item -->
+      
+      {% for obj in cd %}
+        <div class="shadow card mb-3 mx-5 bg-body rounded" >
+          <div class="row no-gutters" style="height: 330px;">
+          {% if obj.images %}
+              <img src="{{obj.images.url}}" class="rounded border border-dark mt-4"  alt="..." style="width: 400px; height: 250px;"  >
+              {% else %}    
+              <img src="{% static 'D:\VoLo\VoLo\media\images\Screenshot_20.png' %}" class="card-img-top" alt="..." height="" width="">
+            {% endif %}
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Product by: {{obj.seller}}</h5>
+              <h5 class="card-title">{{obj.itemname}}</h5>
+                {{obj.key_features1}} | {{obj.key_features2}} | {{obj.key_features3}} | {{obj.key_features4}}
+              <p class="card-text">
+                {{ obj.discription|slice:":90" }} {% if obj.discription|length > 90 %}...{% endif %}
+              </p>
+              <p >Rs.{{obj.new_itemprice}}
+            <del style="color: red;">{{obj.old_itemprice}}</del>  {{obj.percentage}}% off</p> 
+        
+            <p class="card-text"><small class="text-muted">Last date: {{obj.lastdate}}</small></p>
+            <p class="card-text"><small class="text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+  <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+  <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+  </svg>: {{obj.address}}</small></p>
+          </div>
+          {% if username %}
+          <a class="btn btn-primary ml-3 " href="/select/{{obj.itemname}}/{{obj.old_itemprice}}/{{obj.new_itemprice}}/{{obj.lastdate}}/{{obj.discription}}" >Check</a>
+          {% else %}
+          <a class="btn btn-primary ml-3 " href="/login" >Check</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    
+    {% if nopage %}
+  
+    <div class="container position-center">
+      No page
+    </div>
+    
+    {% else %}
+    {% endif %} 
+
+    
+    
+      {% else %}
+      <!-- if user is not login -->
+          <!-- search result for item -->
+
+    
+      {% for obj in ab %}
+
+        <div class="shadow card mb-3 mx-5 bg-body rounded" >
+          <div class="row no-gutters" style="height: 330px;">
+          {% if obj.images %}
+              <img src="{{obj.images.url}}" class="rounded border border-dark mt-4"  alt="..." style="width: 400px; height: 250px;"  >
+              {% else %}    
+              <img src="{% static 'D:\VoLo\VoLo\media\images\Screenshot_20.png' %}" class="card-img-top" alt="..." height="" width="">
+            {% endif %}
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Product by: {{obj.seller}}</h5>
+              <h5 class="card-title">{{obj.itemname}}</h5>
+                {{obj.key_features1}} | {{obj.key_features2}} | {{obj.key_features3}} | {{obj.key_features4}}
+              <p class="card-text">
+                {{ obj.discription|slice:":90" }} {% if obj.discription|length > 90 %}...{% endif %}
+              </p>
+              <p >Rs.{{obj.new_itemprice}}
+            <del style="color: red;">{{obj.old_itemprice}}</del>  {{obj.percentage}}% off</p> 
+        
+            <p class="card-text"><small class="text-muted">Last date: {{obj.lastdate}}</small></p>
+            <p class="card-text"><small class="text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+  <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+  <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+  </svg>: {{obj.address}}</small></p>
+          </div>
+          {% if username %}
+          <a class="btn btn-primary ml-3 " href="/select/{{obj.itemname}}/{{obj.old_itemprice}}/{{obj.new_itemprice}}/{{obj.lastdate}}/{{obj.discription}}" >Check</a>
+          {% else %}
+          <a class="btn btn-primary ml-3 " href="/login" >Check</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+      {% endif %}
+  
+     {% if nopage %}
+  
+     <div class="container position-center">
+       No page
+     </div>
+     
+     {% else %}
+     {% endif %} 
+    </tbody>
+    
+  </body>
+  </html> 

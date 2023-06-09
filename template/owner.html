@@ -11,6 +11,69 @@ active
 {% endblock activeregister %} 
 
 
+{% block user %}
+{% if username %}
+
+        <li class="nav-item mx-4 ">
+          <a class="nav-link my-2 mx-4 soham" href="/logout">Logout</a>
+        </li>
+        <li class="nav-item mx-4 ">
+          <a class="nav-link my-2 mx-4 soham" href="/userprofile">Userprofile</a>
+        </li>   
+
+{% else %}
+
+        <li class="nav-item mx-4">
+          <a class="nav-link my-2 mx-4 soham" href="/login">Login</a>
+        </li>
+        <li class="nav-item mx-4 ">
+          <a class="nav-link my-2 mx-4 soham" href="/register">Register</a>
+        </li>   
+{% endif %}
+{% endblock user %}
+{% comment %} 
+{% block logout %}
+{% if username %}
+  <div class="mx-4  " >
+
+      <a class="btn btn --bs-success-bg-subtle "  href="/logout" >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+          <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+        </svg>
+        Logout</a>
+        
+        
+        <a class="btn btn --bs-success-bg-subtle" href="/userprofile" >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 20 20">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+          </svg>
+          Profile</a>
+</div>
+
+{% else %}
+
+<div class="mx-4  " >
+
+  <a class="btn btn --bs-success-bg-subtle disabled"  href="/logout" >
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+      <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+    </svg>
+    Logout</a>
+    
+    
+    <a class="btn btn --bs-success-bg-subtle disabled" href="/userprofile" >
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 20 20">
+        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+      </svg>
+      Profile</a>
+</div>
+{% endif %}
+
+{% endblock logout %} {% endcomment %}
 
 
 
@@ -39,65 +102,147 @@ active
   {% endif %}
 
 <h2 class="text-center ">Request Page for Shopkeepers</h2>
+<h5 class="text-center "><a href="/register">Register as Customer</a></h5>
+
 
 </div>
 <div class="container" style="height:100%; width: 100%">
-    <form action="/owner" method="post">
+    <form action="/owner" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         
-        
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" class="form-control" id="username" name="username" placeholder="Enter your Username ">
-        </div>
+        <div class="form-row">
 
-        
-        <div class="form-group">
-          <label for="first_name">First_name</label>
-          <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter your First_name ">
+          <div class="form-group col-md-4">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Enter your Username ">
+          </div>
+          
+          
+          <div class="form-group col-md-4">
+            <label for="first_name">First name</label>
+            <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter your First_name ">
+          </div>
+          
+          
+          <div class="form-group col-md-4">
+            <label for="last_name">last name</label>
+            <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter your Last_name ">
+          </div>
         </div>
-
         
-        <div class="form-group">
-          <label for="last_name">last_name</label>
-          <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter your Last_name ">
-        </div>
-        
-        
-        <div class="form-group">
+        <div class="form-row">
+  
+          <div class="form-group col-md-4">
             <label for="email">Email address</label>
             <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
           </div> 
+          
+          <div class="form-group col-md-4">
+            <label for="phone">phone</label>
+            <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter your phone ">
+          </div> 
+        </div>
+        
+        
+        <div class="form-row">
+          <div class="form-group col-md-4">
+          <label for="password">Password</label>
+          <input type="inputPassword" class="form-control" id="inputPassword" name="password1" placeholder="Enter your Password">
+        </div>  
+        
+        <div class="form-group col-md-4">
+          <label for="password">Confirm Password</label>
+          <input type="inputPassword" class="form-control" id="inputPassword" name="password2" placeholder="Enter your Password">
+        </div> 
+      </div> 
+        
+        
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="state" name="state" >State</label>
+            <select name="state" id="state">
+              <option value="Maharashtra">Maharashtra</option>
+              <option value="Maharashtra">Maharashtra</option>
+            </select>
+          </div>
+          
+          <div class="form-group col-md-4 ">
+            <label for="city" name="city" >city</label>
+              <select name="city" id="city">
+                <option value="Mumbai">Mumbai</option>
+              </select>
+            </div>
+          
+            
+            <div class="form-group col-md-4">
+              <label for="area" name="area" >area</label>
+                <select name="area" id="area">
+                  <option value="Borivali(east)"> Borivali(east)</option>
+                  <option value="Borivali(west)"> Borivali(west)</option>
+                  <option value="Kandivali(east)"> Kandivali(east)</option>
+                  <option value="Kandivali(west)"> Kandivali(west)</option>
+                  <option value="Dahisar(east)"> Dahisar(east)</option>
+                  <option value="Dahisar(west)"> Dahisar(west)</option>
+                  <option value="Miraroad(east)"> Miraroad(east)</option>
+                  <option value="Miraroad(west)"> Miraroad(west)</option>
+                  <option value="Bhaindar(east)"> Bhaindar(east)</option>
+                  <option value="Bhaindar(west)"> Bhaindar(west)</option>
+                  <option value="Naigoan(east)"> Naigoan(east)</option>
+                  <option value="Naigoan(west)"> Naigoan(west)</option>
+                  <option value="Vasairoad(east)"> Vasairoad(east)</option>
+                  <option value="Vasairoad(west)"> Vasairoad(west)</option>
+                  <option value="Nalasopara(east)"> Nalasopara(east)</option>
+                  <option value="Nalasopara(west)"> Nalasopara(west)</option>
+                  <option value="Virar(east)"> Virar(east)</option>
+                  <option value="Virar(west)"> Virar(west)</option>
+                </select>
+              </div>
+        
+        
+              <div class="form-group col-md-4">
+                <label for="pincode">pincode</label>
+                <input type="text" class="form-control" id="pincode" name="pincode" placeholder="Enter your pincode ">
+              </div> 
+            </div> 
 
         
-          <div class="form-group">
+
+        <!-- <div class="form-group">
             <label for="image">License of Shop</label>
             <div class="container">
-                <input  type="file" name="images"/>
+              <input  type="file" name="images"/>
             </div>
-          </div> 
-
-
-<!--           
-        <div class="form-group">
-            <label for="email">Aadhar Card</label>
-            <div class="container">
-                <input type="file" name="aadhar" accept="image/*" />
-            </div>
-          </div> 
-
+          </div>   -->
           
-        <div class="form-group">
-            <label for="email">Pancard</label>
-            <div class="container">
-                <input type="file" name="pancard" accept="image/*" />
-            </div>
-          </div>  -->
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="exampleFormControlFile1">License of Shop</label>
+          <input type="file" class="form-control-file" id="exampleFormControlFile1" name="images1" required>
+        </div>
 
+        <div class="form-group col-md-4">
+          <label for="exampleFormControlFile1">Aadhar Card</label>
+          <input type="file" class="form-control-file" id="exampleFormControlFile1" name="images2" required>
+        </div>   
 
-      <button type="submit" class="btn btn-primary" >Submit
-    </button>
-  </form>
+        <div class="form-group col-md-4">
+          <label for="exampleFormControlFile1">Pancard</label>
+          <input type="file" class="form-control-file" id="exampleFormControlFile1" name="images3" required>
+        </div>
+
+      </div>
+
+  <button type="submit" class="btn btn-primary mr-4 mt-2" >Submit
+  </button>
+
+Already have account?<a href="/login" >Sign-in</a>
+</form>
+<br>
+<br>
+<br>
 </div>
+</div>
+</div>
+
 
 {% endblock body %}

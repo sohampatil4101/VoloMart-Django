@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css'>
+    <title> List-Page </title>
+  </head>
+<body>   
+    
+
+
+    <table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">No.</th>
+      <th scope="col">Customer</th>
+      <th scope="col">Paymentmode</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Price</th>
+      <th scope="col">Accept</th> 
+      <th scope="col">Delete</th> 
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    {% for so in so %}
+    <th scope="row">{{forloop.counter}}</th>
+    <td>{{so.username}}</td>
+    <td>{{so.paymentmode}}</td>
+    <td>{{so.piece}}</td>
+    <td>{{so.price}}</td>
+    <td><a class="btn btn-success " href="/placeorders/{{so.username}}/{{so.sellername}}/{{so.itemname}}/{{so.price}}" >Accept</a></td>
+    <td><button> <a class="bi bi-trash " href="/deleteorders/{{so.username}}/{{so.sellername}}/{{so.itemname}}/{{so.price}}" > </a></button> </td>
+    </tr>
+    {% endfor %}    
+  </tbody>
+</table>
+    <p class="mt-5 mb-3 text-muted text-center  text-dark fixed-bottom my-03 py-13">Copyright &copy; 2023| All Rights Reserved</p> 
+</body>
+</html>

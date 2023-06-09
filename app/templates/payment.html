@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %}Payment{% endblock title %}
+{% block body %}
+
+<div class="col-6 mx-auto mt-5">
+    {% if not payment %}
+        <form method="post">
+        {% csrf_token %}
+            <h3>Add a Custom Product</h3>
+            <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-control" placeholder="Enter Product Name" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Amount</label>
+                <input type="number" class="form-control" placeholder="Enter Product Amount" name="amount" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add to Cart</button>
+        </form>
+    {% endif %}
+
+    {% if payment %}
+    <br />
+    <h3>Making Payment for {{product}} Amount of INR {{amount}}</h3>
+    <button id="rzp-button1" class="btn-lg btn-primary">Pay Now</button>
+</div>
+   
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+    // https://razorpay.com/docs/payment-gateway/web-integration/standard/  <-- Copied from This Link
+    var options = {
+        "key": "{{key_id}}", // Enter the Key ID generated from the Dashboard
+        "amount": "{{payment.amount}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        "currency": "INR",
+        "name": "Acme Corp",
+        "description": "New Payment from Site",
+        "image": "https://i.pinimg.com/originals/7e/7b/83/7e7b83091f17de5afe5322e88ecc0b6d.jpg", // Your Logo 
+        "order_id": "{{payment.id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+        "callback_url": "/success/", // URL After Success Payment
+        "prefill": {
+            "name": "Gaurav Kumar", // Customer Details
+            "email": "gaurav.kumar@example.com",
+            "contact": "9999999999"
+        },
+        "notes": {
+            "address": "Razorpay Corporate Office"
+        },
+        "theme": {
+            "color": "#3399cc"
+        }
+    };
+    var rzp1 = new Razorpay(options);
+    document.getElementById('rzp-button1').onclick = function(e){
+        rzp1.open();
+        e.preventDefault();
+    }
+    </script>
+    {% endif %}
+{% endblock body %}

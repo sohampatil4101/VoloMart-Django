@@ -1,9 +1,32 @@
 {% extends 'base.html' %}
-{% load static %}
+<!-- {% load static %} -->
 
 {% block title %}
 Home page
 {% endblock title %} 
+
+
+{% block user %}
+{% if username %}
+
+        <li class="nav-item mx-4 soham ">
+          <a class="nav-link my-2 mx-4" href="/logout">Logout</a>
+        </li>
+        <li class="nav-item mx-4 soham ">
+          <a class="nav-link my-2 mx-4" href="/userprofile">Userprofile</a>
+        </li>   
+
+{% else %}
+
+        <li class="nav-item mx-4 soham">
+          <a class="nav-link my-2 mx-4" href="/login">Login</a>
+        </li>
+        <li class="nav-item mx-4 soham ">
+          <a class="nav-link my-2 mx-4" href="/register">Register</a>
+        </li>   
+{% endif %}
+{% endblock user %}
+
 
 
 {% block activehome %}
@@ -11,21 +34,129 @@ active
 {% endblock activehome %} 
 
 
+{% block fonthome %}
+h5
+{% endblock fonthome %} 
+{% comment %} 
+{% block logout %}
+
+{% if username %}
+  <div class="mx-4  " >
+
+      <a class="btn btn --bs-success-bg-subtle "  href="/logout" >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+          <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+        </svg>
+        Logout</a>
+        
+        
+        <a class="btn btn --bs-success-bg-subtle" href="/userprofile" >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 20 20">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+          </svg>
+          Profile</a>
+</div>
+
+{% else %}
+
+<div class="mx-4  " >
+
+  <a class="btn btn --bs-success-bg-subtle disabled"  href="/logout" >
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+      <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+    </svg>
+    Logout</a>
+    
+    
+    <a class="btn btn --bs-success-bg-subtle disabled" href="/userprofile" >
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 20 20">
+        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+      </svg>
+      Profile</a>
+</div>
+{% endif %}
+{% endblock logout %} {% endcomment %}
+
+
+{% block datalist %}
+{% for so in so %}
+<option value="{{so.itemname}}">
+{% endfor %}
+{% endblock datalist %}
+
+
 
 {% block body %}
-<!-- <div class="wrapper">
-  <div class="static-text">VOLO_MART</div>
-  <ul class="dynamic-text">
-    <li><span>Shopping</span></li>
-    <li><span>Selling</span></li>
-    <li><span>Playing</span></li>
-    <li><span>Dancing</span></li>
-  </ul>
-</div> -->
+
+<div class="container my-3">
+
+<div class="row">
+  <div class="col-sm-3 mb-3 ">
+    <div class="card bg-light">
+      <div class="card-body">
+        <h4 class="card-title">Fresh Vegetables</h4>
+        <p class="card-text">
+          <div class="position position-center">
+            
+            <img src="{% static 'D:\VoLo\VoLo_latest\VoLo\static\vegetables.jpg' %}" alt="..." width="200" height="150">
+          </div>
+          <a href="/more/Vegetables" class="btn btn-primary mx-5 mt-4">More...</a>
+        </p>
+      </div>
+    </div>
+    </div>
+    <div class="col-sm-3 mb-3 ">
+      <div class="card card bg-light">
+        <div class="card-body">
+          <h4 class="card-title">Latest Electronics</h4>
+          <p class="card-text">
+            <div class="position position-center">
+              <img src="{% static 'D:\VoLo\VoLo_latest\VoLo\static\electronics.jpg' %}" alt="..." width="200" height="150">
+            </div>
+            <a href="/more/Electronics" class="btn btn-primary mx-5 mt-4">More...</a>
+          </p>
+        </div>
+      </div>
+      </div>
+      <div class="col-sm-3 mb-3 ">
+        <div class="card card bg-light">
+          <div class="card-body">
+            <h4 class="card-title">Fresh Fruits</h4>
+            <p class="card-text">
+              <div class="position position-center">
+                <img src="{% static 'D:\VoLo\VoLo_latest\VoLo\static\fruits.jpg' %}" alt="..." width="200" height="150">
+              </div>
+              <a href="/more/Fruits" class="btn btn-primary mx-5 mt-4">More...</a>
+            </p>
+          </div>
+        </div>
+        </div>
+        <div class="col-sm-3 mb-3 ">
+          <div class="card card bg-light">
+            <div class="card-body">
+              <h4 class="card-title">Fashionable clothes</h4>
+              <p class="card-text">
+                <div class="position position-center">
+                  <img src="{% static 'D:\VoLo\VoLo_latest\VoLo\static\clothes.jpg' %}" alt="..." width="200" height="150">
+                </div>
+                <a href="/more/Clothes" class="btn btn-primary mx-5 mt-4">More...</a>
+              </p>
+            </div>
+          </div>
+          </div>
+  
+</div>
+
 
 <!-- This the container of the random img of unsplash.com -->
 <!-- "https://source.unsplash.com/1600x600/?vegetable" -->
-<div class="container my-5 " style="height: 450px; ">
+  <h3>VoLo-Mart</h3>
+</div>
+<div class="container my-5 " style="height: 450px; width: 1900px;">
     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
@@ -70,96 +201,436 @@ active
 	$('.carousel').carousel({
   interval: 3000
 });
+
 </script>
 
- 
 
-
-
-<div class="container pt-12 ">
-	<div class="row md-4">
-		{% for so in so %}
-		<div class="col md-4 mx-3 my-3 mb-4 ">
-			<div class="card" style="width: 18rem;">
+<!-- Vegetable -->
+<!-- With login -->
+{% if username and ij%}
+<div class="container ">
+<div class="container h4 rounded-5 ">Vegetables</div>
+	<div class="form-row">
+		{% for so in ij %}    
+		<div class="col">
+			<div class="card shadow-lg p-3 mb-5 bg-white rounded " style="width: 16rem; height:28rem;">
       {% if so.images %}
-
-        <img src="{{so.images.url}}" class="card-img-top" alt="...">
-        {{so.images.url}}
-
+        <img src="{{so.images.url}}" width="99" height="150" class="card-img-top" alt="...">
       {% else %}
-
-        <img src="{% static 'D:\VoLo\VoLo\media\images\Screenshot_20.png' %}" class="card-img-top" alt="...">
-
       {% endif %}
-				
-
 				<div class="card-body">
-					<h5 class="card-title">{{so.itemname}}</h5>
-					<p class="card-text">Price: Rs{{so.itemprice}}.</p>
-					<p class="card-text">Availibility:{{so.lastdate}}.</p>
-          <a class="btn btn-primary" href="/select/{{so.itemname}}/{{so.itemprice}}/{{so.lastdate}}" >Check</a>
-				</div>
+					<h5 class="card-title">{{so.itemname}} | {{ so.discription|slice:":20" }} {% if so.discription|length > 30 %}...{% endif %}</h5>
+					Rs.{{so.new_itemprice}} <del>{{so.old_itemprice}}</del>
+        <span class="badge badge-success">{{so.percentage}}%off</span>
+					{{so.category}}
+      <a class="card-text" href="/">  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+        <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+        <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+      </svg> {{ so.address|slice:":15" }} {% if so.address|length > 15 %}...{% endif %}</a>
+					<p class="card-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+           <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+            </svg> : {{so.lastdate}}</p>
+            {% if username %}
+            <a class="btn btn-outline-success btn-sm " href="/select/{{so.itemname}}/{{so.old_itemprice}}/{{so.new_itemprice}}/{{so.lastdate}}/{{so.discription}}" >shop</a>
+            {% else %}
+            <a class="btn btn-outline-success btn-sm " href="/login" >shop</a>
+            {% endif %}
+            <br>
+            <small>Product by: {{so.seller}}</small>
+            <a class="bi bi-bookmark " href= "savee/{{so.seller}}/{{so.category}}/{{so.itemname}}/{{so.old_itemprice}}/{{so.new_itemprice}}/{{so.lastdate}}"></a>              
+          </div>
+			</div>
+    </div>
+      {% endfor %}
+      <div class="br">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>  
+        <br>  
+        <h4>...  <a class="btn btn-primary " href="/more/Vegetables">More</a></h4>
+    </div>
+	</div> 
+  
+
+{% else %}
+<!-- Without login -->
+<div class="container pt-12" >
+<div class="container h4  rounded-5 ">Vegetables</div>
+	<div class="row md-4">
+  
+		{% for so in ab %}    
+
+		<div class="col md-4 mx-3 my-3 mb-4 ">
+			<div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 16rem; height:28rem;">
+      {% if so.images %}
+        <img src="{{so.images.url}}" width="99" height="150" class="card-img-top" alt="...">
+      {% else %}
+      {% endif %}
+				<div class="card-body">
+					<h5 class="card-title">{{so.itemname}} | {{ so.discription|slice:":20" }} {% if so.discription|length > 30 %}...{% endif %}</h5>
+					Rs.{{so.new_itemprice}} <del>{{so.old_itemprice}}</del>
+        <span class="badge badge-success">{{so.percentage}}%off</span>
+					{{so.category}}
+      <a class="card-text" href="/">  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+        <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+        <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+      </svg> {{ so.address|slice:":15" }} {% if so.address|length > 15 %}...{% endif %}</a>
+					<p class="card-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+           <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+            </svg> : {{so.lastdate}}</p>
+            {% if username %}
+            <a class="btn btn-outline-success btn-sm " href="/select/{{so.itemname}}/{{so.old_itemprice}}/{{so.new_itemprice}}/{{so.lastdate}}/{{so.discription}}" >shop</a>
+            {% else %}
+            <a class="btn btn-outline-success btn-sm " href="/login" >shop</a>
+            {% endif %}
+            <br>
+            <small>Product by: {{so.seller}}</small>
+            <a class="bi bi-bookmark " href= "/login"></a>
+          </div>
 			</div>
 		</div>
 		{% endfor %}
-	</div>
+    <div class="br">
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>  
+      <br>  
+      <h4>...  <a class="btn btn-primary " href="/more/Vegetables">More</a></h4>
+  </div>
+</div> 
 
-  <!-- <style>
+{% endif %}
+  
+
+
+
+
+
+<!-- Fruits -->
+<!-- With login -->
+{% if username and kl %}
+<div class="container ">
+<div class="container h4 rounded-5">Fruits</div>
+	<div class="form-row">
+		{% for so in kl %}    
+		<div class="col ">
+			<div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 16rem; height:28rem;">
+      {% if so.images %}
+        <img src="{{so.images.url}}" width="99" height="150" class="card-img-top" alt="...">
+      {% else %}
+      {% endif %}
+				<div class="card-body">
+					<h5 class="card-title">{{so.itemname}} | {{ so.discription|slice:":20" }} {% if so.discription|length > 30 %}...{% endif %}</h5>
+					Rs.{{so.new_itemprice}} <del>{{so.old_itemprice}}</del>
+        <span class="badge badge-success">{{so.percentage}}%off</span>
+					{{so.category}}
+      <a class="card-text" href="/">  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+        <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+        <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+      </svg> {{ so.address|slice:":15" }} {% if so.address|length > 15 %}...{% endif %}</a>
+					<p class="card-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+           <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+            </svg> : {{so.lastdate}}</p>
+            {% if username %}
+            <a class="btn btn-outline-success btn-sm " href="/select/{{so.itemname}}/{{so.old_itemprice}}/{{so.new_itemprice}}/{{so.lastdate}}/{{so.discription}}" >shop</a>
+            {% else %}
+            <a class="btn btn-outline-success btn-sm " href="/login" >shop</a>
+            {% endif %}
+            <br>
+            <small>Product by: {{so.seller}}</small>
+            <a class="bi bi-bookmark " href= "savee/{{so.seller}}/{{so.category}}/{{so.itemname}}/{{so.old_itemprice}}/{{so.new_itemprice}}/{{so.lastdate}}"></a>
+          </div>
+			</div>
+    </div>
+      {% endfor %}
+      <div class="br">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>  
+        <br>  
+        <h4>...<a class="btn btn-primary " href="/more/Fruits">More</a></h4>
+    </div>
+	</div> 
+  
+
+{% else %}
+<!-- Without login -->
+<div class="container pt-12" >
+<div class="container h4  rounded-5">Fruits</div>
+	<div class="row md-4">
+		{% for so in cd %}    
     
-    .wrapper{
-      display: inline-flex;
-  }
-  
-  .wrapper .static-text{
-    color: #dd2727;
-    font-size: 60px;
-    font-weight: 400;
-  }
-  
-  .wrapper .dynamic-text{
-    margin-left: 15px;
-    line-height: 80px;
-    height: 90px;
-    overflow: hidden;
-  }
+		<div class="col md-4 mx-3 my-3 mb-4 ">
+			<div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 16rem; height:28rem;">
+      {% if so.images %}
+        <img src="{{so.images.url}}" width="99" height="150" class="card-img-top" alt="...">
+      {% else %}
+      {% endif %}
+				<div class="card-body">
+					<h5 class="card-title">{{so.itemname}} | {{ so.discription|slice:":20" }} {% if so.discription|length > 30 %}...{% endif %}</h5>
+					Rs.{{so.new_itemprice}} <del>{{so.old_itemprice}}</del>
+        <span class="badge badge-success">{{so.percentage}}%off</span>
+					{{so.category}}
+      <a class="card-text" href="/">  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+        <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+        <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+      </svg> {{ so.address|slice:":15" }} {% if so.address|length > 15 %}...{% endif %}</a>
+					<p class="card-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+           <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+            </svg> : {{so.lastdate}}</p>
+            {% if username %}
+            <a class="btn btn-outline-success btn-sm " href="/select/{{so.itemname}}/{{so.old_itemprice}}/{{so.new_itemprice}}/{{so.lastdate}}/{{so.discription}}" >shop</a>
+            {% else %}
+            <a class="btn btn-outline-success btn-sm " href="/login" >shop</a>
+            {% endif %}
+            <br>
+            <small>Product by: {{so.seller}}</small>
+            <a class="bi bi-bookmark " href= "/login"></a>
+          </div>
+			</div>
+		</div>
+		{% endfor %}
+    <div class="br">
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>  
+      <br>  
+      <h4>...  <a class="btn btn-primary " href="/more/Fruits">More</a></h4>
+  </div>
+</div> 
 
-  .dynamic-text li{
-    color: #FC6D6D;
-    list-style: none;
-    font-size: 60px;
-    font-weight: 500;
-    position: relative;
-    top: 0;
-    animation: slide 6s steps(4) infinite;
-  }
-  
-  @keyframes typing{
-    100%{
-      top: -360px;
-    }
-  }
-  
-  
-  .dynamic-text li span{
-    position: relative;
-  }
-  .dynamic-text li span ::after{
-    content: "";
-    position: absolute;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background: #3f3f4f;
-    border-left: 2px solid #FC6D6D;
-    animation: typing 1.5s steps(10) infinite;
-  }
+{% endif %}
 
-  @keyframes typing{
-    100%{
-      left: 100%;
-      margin: 0 -35px 0 35px ;
-    }
-  }
+
+
+
+<!-- Electronics -->
+<!-- With login -->
+{% if username and mn%}
+<div class="container pt-12">
+<div class="container h4 rounded-5">Electronics</div>
+	<div class="form-row">
+		{% for so in mn %}    
+		<div class="col ">
+			<div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 16rem; height:28rem;">
+      {% if so.images %}
+        <img src="{{so.images.url}}" width="99" height="150" class="card-img-top" alt="...">
+      {% else %}
+      {% endif %}
+				<div class="card-body">
+					<h5 class="card-title">{{so.itemname}} | {{ so.discription|slice:":20" }} {% if so.discription|length > 30 %}...{% endif %}</h5>
+					Rs.{{so.new_itemprice}} <del>{{so.old_itemprice}}</del>
+        <span class="badge badge-success">{{so.percentage}}%off</span>
+					{{so.category}}
+      <a class="card-text" href="/">  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+        <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+        <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+      </svg> {{ so.address|slice:":15" }} {% if so.address|length > 15 %}...{% endif %}</a>
+					<p class="card-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+           <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+            </svg> : {{so.lastdate}}</p>
+            {% if username %}
+            <a class="btn btn-outline-success btn-sm " href="/select/{{so.itemname}}/{{so.old_itemprice}}/{{so.new_itemprice}}/{{so.lastdate}}/{{so.discription}}" >shop</a>
+            {% else %}
+            <a class="btn btn-outline-success btn-sm " href="/login" >shop</a>
+            {% endif %}
+            <br>
+            <small>Product by: {{so.seller}}</small>
+            <a class="bi bi-bookmark " href= "savee/{{so.seller}}/{{so.category}}/{{so.itemname}}/{{so.old_itemprice}}/{{so.new_itemprice}}/{{so.lastdate}}"></a>
+          </div>
+          </div>
+    </div>
+      {% endfor %}
+      <div class="br">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>  
+        <br>  
+        <h4>...  <a class="btn btn-primary " href="/more/Electronics">More</a></h4>
+    </div>
+	</div> 
   
-</style> -->
+
+{% else %}
+<!-- Without login -->
+<div class="container pt-12" >
+<div class="container h4">Electronics</div>
+	<div class="row md-4">
+		{% for so in ef %}    
+    
+		<div class="col md-4 mx-3 my-3 mb-4 ">
+			<div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 16rem; height:28rem;">
+      {% if so.images %}
+        <img src="{{so.images.url}}" width="99" height="150" class="card-img-top" alt="...">
+      {% else %}
+      {% endif %}
+				<div class="card-body">
+					<h5 class="card-title">{{so.itemname}} | {{ so.discription|slice:":20" }} {% if so.discription|length > 30 %}...{% endif %}</h5>
+					Rs.{{so.new_itemprice}} <del>{{so.old_itemprice}}</del>
+        <span class="badge badge-success">{{so.percentage}}%off</span>
+					{{so.category}}
+      <a class="card-text" href="/">  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+        <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+        <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+      </svg> {{ so.address|slice:":15" }} {% if so.address|length > 15 %}...{% endif %}</a>
+					<p class="card-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+           <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+            </svg> : {{so.lastdate}}</p>
+            {% if username %}
+            <a class="btn btn-outline-success btn-sm " href="/select/{{so.itemname}}/{{so.old_itemprice}}/{{so.new_itemprice}}/{{so.lastdate}}/{{so.discription}}" >shop</a>
+            {% else %}
+            <a class="btn btn-outline-success btn-sm " href="/login" >shop</a>
+            {% endif %}
+            <br>
+            <small>Product by: {{so.seller}}</small>
+            <a class="bi bi-bookmark " href= "/login"></a>
+          </div>
+          </div>
+		</div>
+		{% endfor %}
+    <div class="br">
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>  
+      <br>  
+      <h4>...  <a class="btn btn-primary " href="/more/Electronics">More</a></h4>
+  </div>
+</div> 
+
+{% endif %}
+  
+
+
+<!-- Clothes -->
+
+<!-- With login -->
+ {% if username and op %}
+<div class="container pt-12 ">
+<div class="container h4 rounded-5">Clothes</div>
+	<div class="form-row">
+		{% for so in op %}    
+		<div class="col ">
+			<div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 16rem; height:28rem;">
+      {% if so.images %}
+        <img src="{{so.images.url}}" width="99" height="150" class="card-img-top" alt="...">
+      {% else %}
+      {% endif %}
+				<div class="card-body">
+					<h5 class="card-title">{{so.itemname}} | {{ so.discription|slice:":20" }} {% if so.discription|length > 30 %}...{% endif %}</h5>
+					Rs.{{so.new_itemprice}} <del>{{so.old_itemprice}}</del>
+        <span class="badge badge-success">{{so.percentage}}%off</span>
+					{{so.category}}
+      <a class="card-text" href="/">  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+        <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+        <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+      </svg> {{ so.address|slice:":15" }} {% if so.address|length > 15 %}...{% endif %}</a>
+					<p class="card-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+           <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+            </svg> : {{so.lastdate}}</p>
+            {% if username %}
+            <a class="btn btn-outline-success btn-sm " href="/select/{{so.itemname}}/{{so.old_itemprice}}/{{so.new_itemprice}}/{{so.lastdate}}/{{so.discription}}" >shop</a>
+            {% else %}
+            <a class="btn btn-outline-success btn-sm " href="/login" >shop</a>
+            {% endif %}
+            <br>
+              <small>Product by: {{so.seller}}</small>
+              <a class="bi bi-bookmark " href= "savee/{{so.seller}}/{{so.category}}/{{so.itemname}}/{{so.old_itemprice}}/{{so.new_itemprice}}/{{so.lastdate}}"></a>
+          </div>
+			</div>
+    </div>
+      {% endfor %}
+      <div class="br">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>  
+        <br>  
+        <h4>...  <a class="btn btn-primary " href="/more/Clothes">More</a></h4>
+    </div>
+	</div> 
+  
+
+{% else %} 
+<!-- Without login -->
+<div class="container pt-12" >
+<div class="container h4">Clothes</div>
+	<div class="row md-4">
+		{% for so in gh %}    
+    
+		<div class="col md-4 mx-3 my-3 mb-4 ">
+			<div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 16rem; height:28rem;">
+      {% if so.images %}
+        <img src="{{so.images.url}}" width="99" height="150" class="card-img-top" alt="...">
+      {% else %}
+      {% endif %}
+				<div class="card-body">
+					<h5 class="card-title">{{so.itemname}} | {{ so.discription|slice:":20" }} {% if so.discription|length > 30 %}...{% endif %}</h5>
+					Rs.{{so.new_itemprice}} <del>{{so.old_itemprice}}</del>
+        <span class="badge badge-success">{{so.percentage}}%off</span>
+					{{so.category}}
+      <a class="card-text" href="/">  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+        <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+        <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+      </svg> {{ so.address|slice:":15" }} {% if so.address|length > 15 %}...{% endif %}</a>
+					<p class="card-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+           <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+            </svg> : {{so.lastdate}}</p>
+            {% if username %}
+            <a class="btn btn-outline-success btn-sm " href="/select/{{so.itemname}}/{{so.old_itemprice}}/{{so.new_itemprice}}/{{so.lastdate}}/{{so.discription}}" >shop</a>
+            {% else %}
+            <a class="btn btn-outline-success btn-sm " href="/login" >shop</a>
+            {% endif %}
+            <br>
+          <small>Product by: {{so.seller}}</small>
+              <a class="bi bi-bookmark " href= "/login"></a>
+          </div>
+			</div>
+		</div>
+		{% endfor %}
+    <div class="br">
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>  
+      <br>  
+      <h4>...  <a class="btn btn-primary " href="/more/Clothes">More</a></h4>
+  </div>
+</div> 
+</div> 
+
+{% endif %}
+  
+
+
+
   {% endblock body %}

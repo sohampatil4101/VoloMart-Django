@@ -11,7 +11,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css'>
 </head>
 <body>
     
@@ -39,49 +39,100 @@
   </div>
   {% endif %}
     
-<div class="container mt-50" >
-    <form action="/addproduct" method="post">
+<div class="container mt-50 my-3" >
+  {% for so in so %}
+    <form action="/addproduct/{{username}}/{{so.state}}/{{so.city}}/{{so.area}}" enctype="multipart/form-data" method="post">
+  {% endfor %}
         {% csrf_token %}
+      <div class="container">
         
-        <div class="form-group">
-          <label for="itemname">itemname</label>
-          <input type="text" class="form-control" id="itemname" name="itemname" placeholder="Enter your itemname ">
+        <div class="container d-flex justify-content-center">
+          <i class="bi bi-person" style="height: 40px;">{{username}}</i>
         </div>
-        
-        <div class="form-group mt-50">
+        <div class="container d-flex justify-content-center">
+          <a class="btn btn-primary my-2 mx-4 " href="/checkorders" >Check orders </a>
+          {% for so in so %}
+          <a class="btn btn-primary my-2 mx-4" href="/productlist" >Edit Products</a>
+          {% endfor %}
+        </div>
+      </div>
+
+      <h4>Add Products:</h4>
+      <div class="form-group">
+          <label for="seller">username</label>
+            <input disabled type = "text" name = "seller" value = "{{ username }}" />
+          </div>
+          
+          <div class="form-group">
+            <label for="itemname">Itemname</label>
+            <input type="text" class="form-control" id="itemname" name="itemname" placeholder="Enter your itemname ">
+          </div>
+          
+          <div class="form-row">
+        <div class="form-group  col-md-4">
           <label for="category" name="category" >category</label>
           <select name="category" id="category">
-            <option value="Vegetable">Vegetables</option>
+            <option value="Vegetables">Vegetables</option>
             <option value="Fruits">Fruits</option>
             <option value="Electronics">Electronics</option>
             <option value="Clothes">Clothes</option>
           </select>
         </div>
 
-          
+        
+        <div class="form-group col-md-4">
+          <label for="old_itemprice">Old itemprice</label>
+          <input type="number" id="old_itemprice" name="old_itemprice" min="1" max="500000">
+        </div>
+        
+        <div class="form-group col-md-4">
+          <label for="new_itemprice">New itemprice</label>
+          <input type="number" id="new_itemprice" name="new_itemprice" min="1" max="500000">
+        </div>
+      </div>
+        
         
         <div class="form-group">
-          <label for="itemprice">itemprice</label>
-          <input type="number" id="itemprice" name="itemprice" min="1" max="500000">
+          <label for="discription">Description for product</label>
+          <textarea type="text" class="form-control" id="discription" name="discription" placeholder="Enter product's description "></textarea>
         </div>
-
+        
+        <div class="form-row">
+        <div class="form-group col-md-3">
+          <label for="key_features1">Keyfeature 1</label>
+          <input type="text" class="form-control" id="key_features1" name="key_features1" >
+        </div>
+        
+        <div class="form-group col-md-3">
+          <label for="key_features2">Keyfeature 2</label>
+          <input type="text" class="form-control" id="key_features2" name="key_features2" >
+        </div>
+        
+        <div class="form-group col-md-3">
+          <label for="key_features3">Keyfeature 3</label>
+          <input type="text" class="form-control" id="key_features3" name="key_features3" >
+        </div>
+        
+        <div class="form-group col-md-3">
+          <label for="key_features4">Keyfeature 4</label>
+          <input type="text" class="form-control" id="key_features4" name="key_features4" >
+        </div>
+      </div>
         
         <div class="form-group">          
           <label for="lastdate">Lastday:</label>
           <input type="date" id="lastdate" name="lastdate">
         </div>
         
-        
+
+
         <div class="form-group">
             <label for="images">Image of product</label>
-            <div class="container">
-                <input  type="file" name="images" />
-            </div>
+                <input  type="file" name="images" Required />
           </div> 
         
 
-      <button type="submit" class="btn btn-primary" >Add Product
-    </button>
+      <button type="submit" class="btn btn-primary" >Add Product </button>
   </form>
 </div>
 

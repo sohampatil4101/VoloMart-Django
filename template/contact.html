@@ -12,14 +12,92 @@ active
 {% endblock activecontactus %} 
 
 
+{% block fontcontactus %}
+h5
+{% endblock fontcontactus %} 
 
+{% block user %}
+{% if username %}
+
+        <li class="nav-item mx-4 soham ">
+          <a class="nav-link my-2 mx-4" href="/logout">Logout</a>
+        </li>
+        <li class="nav-item mx-4 soham ">
+          <a class="nav-link my-2 mx-4" href="/userprofile">Userprofile</a>
+        </li>   
+
+{% else %}
+
+        <li class="nav-item mx-4 soham">
+          <a class="nav-link my-2 mx-4" href="/login">Login</a>
+        </li>
+        <li class="nav-item mx-4 soham ">
+          <a class="nav-link my-2 mx-4" href="/register">Register</a>
+        </li>   
+{% endif %}
+{% endblock user %}
+{% comment %} 
+{% block logout %}
+{% if username %}
+  <div class="mx-4  " >
+
+      <a class="btn btn --bs-success-bg-subtle "  href="/logout" >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+          <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+        </svg>
+        Logout</a>
+        
+        
+        <a class="btn btn --bs-success-bg-subtle" href="/userprofile" >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 20 20">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+          </svg>
+          Profile</a>
+</div>
+
+{% else %}
+
+<div class="mx-4  " >
+
+  <a class="btn btn --bs-success-bg-subtle disabled"  href="/logout" >
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+      <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+    </svg>
+    Logout</a>
+    
+    
+    <a class="btn btn --bs-success-bg-subtle disabled" href="/userprofile" >
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 20 20">
+        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+      </svg>
+      Profile</a>
+</div>
+{% endif %}
+
+{% endblock logout %} {% endcomment %}
 
 {% block body %}
 
 <div>
 <div>
+
+  {% if successs %}
+    <div class="container" style="height:70px; width: 100%;">
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>{{mssg}}</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  </div>
+  {% endif %}
+
   {% if success %}
-    <div class="container" style="height:50px; width: 100%;">
+    <div class="container" style="height:70px; width: 100%;">
   <div class="alert alert-success alert-dismissible fade show" role="alert">
     <strong>Response Submitted!!</strong> Thank you {{name}}
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -28,7 +106,6 @@ active
   </div>
   </div>
   {% endif %}
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a href="/"> Back </a></button>
 
   
 <h2 class="text-center">Mail us on:<a href='mailto:patilsoham390@gmail.com' >patilsoham390@gmail.com</a></h2>
@@ -36,7 +113,7 @@ active
 <h2 class="text-center ">Contact</h2>
 
 </div>
-<div class="container">
+<div class="container mb-5">
     <form action="/contact" method="post">
         {% csrf_token %}
         <div class="form-group">

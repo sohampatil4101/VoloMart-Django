@@ -27,8 +27,8 @@ SECRET_KEY = 'django-insecure-f+29_wxwpd=kc=a)7nqe4)_ibd_(ll!7s9*3$m#g2p%7i!da^j
 DEBUG = True
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'patilsoham390@gmail.com'
-EMAIL_HOST_PASSWORD = 'zzgkouphrluemxok'
+EMAIL_HOST_USER = '' #Enter your email id here
+EMAIL_HOST_PASSWORD = ''    # Enter your email verifiaction password here
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'admin_interface',
     'colorfield',
     'todoapp',
+    'app',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -139,8 +140,8 @@ STATICFILES_DIRS = [
 ]
 
 # managing media
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
 
 
 # latest changes made

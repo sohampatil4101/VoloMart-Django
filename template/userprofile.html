@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en"><head>  
+	<!-- CSS only -->
+	<link href=
+"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		rel="stylesheet" />
+	<script src=
+"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+	</script>
+	<script src=
+"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+	</script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+	</script>
+  
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title> Todo-List {% block title %}{% endblock title %} </title>
+  </head>
+<body>
+{% if successs %}
+<div class="container my-5" style="height:50px; width: 100%;">
+  <div class="alert alert-danger alert-dismissible fade show" style="height:50px" role="alert">
+     {{mssg}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+</div>
+{% else %}
+{% endif %}
+{% if success %}
+
+<div class="container my-5" style="height:50px; width: 100%;">
+  <div class="alert alert-success alert-dismissible fade show" style="height:50px" role="alert">
+     {{mssg}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+</div>
+{% else %}
+{% endif %}
+
+
+  <div class="container text-center">
+        <img src="{% static 'D:\VoLo\VoLo_latest\VoLo\static\logo-no-background.png' %}" alt="..." width="75" height="75">
+    </div>
+
+
+
+  {% if ab %}
+  
+    <table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">No.</th>
+      <th scope="col">seller</th>
+      <th scope="col">category</th>
+      <th scope="col">item</th>
+      <th scope="col">check</th>
+      <th scope="col">Remove</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for varr in ab %}
+    <tr>
+    <th scope="row">{{forloop.counter}}</th>
+    <td>{{varr.seller}}</td>
+    <td>{{varr.category}}</td>
+    <td>{{varr.itemname}}</td>
+    <td><a class="btn btn-success " href="/selectt/{{varr.itemname}}/{{varr.old_itemprice}}/{{varr.new_itemprice}}/{{varr.lastdate}}"> Check</a></td>
+    <td><a class="btn btn-danger " href="/deletesave/{{varr.seller}}/{{varr.category}}/{{varr.itemname}}" > Delete</a> </td> 
+    </tr>
+    {% endfor %}    
+  </tbody>
+</table>
+
+  {% else %}
+  {% endif %}
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+    {% for so in so %}
+    <div class="container mb-5">
+          <div class="h4">Old Information</div>
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label for="username">Username</label>
+                <input disabled value="{{username}}"class="form-control" >
+              </div>         
+              <div class="form-group col-md-4">
+                <label for="first_name">First_name</label>
+                <input disabled value="{{so.first_name}}"class="form-control" >
+              </div> 
+              <div class="form-group col-md-4">
+                <label for="last_name">last_name</label>
+                <input  disabled value="{{so.last_name}}"class="form-control">
+              </div>      
+            </div>
+             
+            <div class="form-row ">
+              <div class="form-group col-md-4">
+                <label for="password">Email</label>
+                <input disabled  value="{{so.email}}"class="form-control" >
+              </div>            
+              <div class="form-group col-md-4">
+                <label for="password">Mobile number</label>
+                <input  disabled value="{{so.phone}}"class="form-control">
+              </div>            
+              <div class="form-group col-md-4">
+                  <label for="password">pincode</label>
+                  <input disabled value="{{so.pincode}}"class="form-control" >
+                </div>  
+                </div>  
+     
+            <div class="form-row ">
+              <div class="form-group col-md-4">
+                <label for="password">State</label>
+                <input  disabled value="{{so.state}}"class="form-control">
+              </div>           
+              <div class="form-group col-md-4">
+                <label for="password">City</label>
+                <input  disabled value="{{so.city}}"class="form-control">
+              </div>           
+              <div class="form-group col-md-4">
+                  <label for="password">Area</label>
+                  <input  disabled value="{{so.area}}"class="form-control">
+                </div> 
+            </div>
+            </form>
+            {% endfor %}
+            </div>
+
+
+
+        {% for so in so %}
+<div class="container">   
+      <div class="h4">
+        Edit/Change Information
+      </div>
+    <form action="/update/{{so.username}}/{{so.first_name}}/{{so.last_name}}/{{so.email}}/{{so.password}}/{{so.phone}}/{{so.pincode}}/{{so.state}}/{{so.city}}/{{so.area}}" method="post">
+        {% csrf_token %}
+        
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Enter your Username ">
+          </div>         
+          <div class="form-group col-md-4">
+            <label for="first_name">First_name</label>
+            <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter your First_name ">
+          </div> 
+          <div class="form-group col-md-4">
+            <label for="last_name">last_name</label>
+            <input type="text"  class="form-control" id="last_name" name="last_name" placeholder="Enter your Last_name ">
+          </div>      
+        </div>
+         
+        <div class="form-row ">
+          <div class="form-group col-md-4">
+            <label for="password">Email</label>
+            <input type="inputPassword" disabled value={{so.email}} class="form-control" id="email" name="email" placeholder="Enter your Password">
+          </div>            
+          <div class="form-group col-md-4">
+            <label for="password">Mobile number</label>
+            <input type="inputPassword" disabled value={{so.phone}} class="form-control" id="phone" name="phone" placeholder="Enter your Password">
+          </div>            
+          <div class="form-group col-md-4">
+              <label for="password">pincode</label>
+              <input type="inputPassword"  class="form-control" id="pincode" name="pincode" placeholder="Enter your pincode">
+            </div>  
+            </div>  
+ 
+        <div class="form-row ">
+          <div class="form-group col-md-4">
+            <label for="state" name="state" >State</label>
+              <select name="state" id="state">
+                <option value="Maharashtra">Maharashtra</option>
+              </select>
+            </div>   
+            <div class="form-group col-md-4 ">
+              <label for="city" name="city" >city</label>
+                <select name="city" id="city">
+                  <option value="Mumbai">Mumbai</option>
+                </select>
+              </div>         
+          
+              <div class="form-group col-md-4">
+                <label for="area" name="area" >area</label>
+                  <select name="area" id="area">
+                    <option value="Borivali(east)"> Borivali(east)</option>
+                    <option value="Borivali(west)"> Borivali(west)</option>
+                    <option value="Kandivali(east)"> Kandivali(east)</option>
+                    <option value="Kandivali(west)"> Kandivali(west)</option>
+                    <option value="Dahisar(east)"> Dahisar(east)</option>
+                    <option value="Dahisar(west)"> Dahisar(west)</option>
+                    <option value="Miraroad(east)"> Miraroad(east)</option>
+                    <option value="Miraroad(west)"> Miraroad(west)</option>
+                    <option value="Bhaindar(east)"> Bhaindar(east)</option>
+                    <option value="Bhaindar(west)"> Bhaindar(west)</option>
+                    <option value="Naigoan(east)"> Naigoan(east)</option>
+                    <option value="Naigoan(west)"> Naigoan(west)</option>
+                    <option value="Vasairoad(east)"> Vasairoad(east)</option>
+                    <option value="Vasairoad(west)"> Vasairoad(west)</option>
+                    <option value="Nalasopara(east)"> Nalasopara(east)</option>
+                    <option value="Nalasopara(west)"> Nalasopara(west)</option>
+                    <option value="Virar(east)"> Virar(east)</option>
+                    <option value="Virar(west)"> Virar(west)</option>
+                  </select>
+                </div>
+
+
+        
+        <button type="submit" class="btn btn-primary  mr-4 mb-5" >Update</button>
+        </form>
+        {% endfor %}
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        
+</body>
+</html>
